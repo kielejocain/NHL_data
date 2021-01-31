@@ -37,7 +37,7 @@ def scrape_skaters(season):
         "team3",
         "games_played",
         "goals",
-        "ev_goals",
+        "es_goals",
         "pp_goals",
         "sh_goals",
         "en_goals",
@@ -51,18 +51,18 @@ def scrape_skaters(season):
         "goals_wrap",
         "goals_wrist",
         "assists",
-        "ev_assists",
+        "es_assists",
         "pp_assists",
         "sh_assists",
         "en_assists",
         "points",
-        "ev_points",
+        "es_points",
         "pp_points",
         "sh_points",
         "en_points",
         "plus_minus",
-        "ev_goals_for",
-        "ev_goals_against",
+        "es_goals_for",
+        "es_goals_against",
         "pp_goals_for",
         "pp_goals_against",
         "sh_goals_for",
@@ -96,9 +96,9 @@ def scrape_skaters(season):
         "oz_fo",
         "oz_fo_wins",
         "oz_fo_losses",
-        "ev_fo",
-        "ev_fo_wins",
-        "ev_fo_losses",
+        "es_fo",
+        "es_fo_wins",
+        "es_fo_losses",
         "pp_fo",
         "pp_fo_wins",
         "pp_fo_losses",
@@ -114,7 +114,7 @@ def scrape_skaters(season):
         "penalties_drawn",
         "shifts",
         "toi",
-        "ev_toi",
+        "es_toi",
         "ot_toi",
         "pp_toi",
         "sh_toi"
@@ -139,7 +139,7 @@ def scrape_skaters(season):
             'playerId': 'nhl_num', 'seasonId': 'season',
             'teamAbbrevs': 'teams', 'gamesPlayed': 'games_played',
             'plusMinus': 'plus_minus', 'penaltyMinutes': 'penalty_minutes',
-            'evGoals': 'ev_goals', 'evPoints': 'ev_points',
+            'evGoals': 'es_goals', 'evPoints': 'es_points',
             'ppGoals': 'pp_goals', 'ppPoints': 'pp_points',
             'shGoals': 'sh_goals', 'shPoints': 'sh_points',
             'gameWinningGoals': 'gw_goals', 'otGoals': 'ot_goals'
@@ -169,7 +169,7 @@ def scrape_skaters(season):
             'defensiveZoneFaceoffWins': 'dz_fo_wins', 'defensiveZoneFaceoffLosses': 'dz_fo_losses',
             'neutralZoneFaceoffWins': 'nz_fo_wins', 'neutralZoneFaceoffLosses': 'nz_fo_losses',
             'offensiveZoneFaceoffWins': 'oz_fo_wins', 'offensiveZoneFaceoffLosses': 'oz_fo_losses',
-            'evFaceoffs': 'ev_fo', 'evFaceoffsWon': 'ev_fo_wins', 'evFaceoffsLost': 'ev_fo_losses',
+            'evFaceoffs': 'es_fo', 'evFaceoffsWon': 'es_fo_wins', 'evFaceoffsLost': 'es_fo_losses',
             'ppFaceoffs': 'pp_fo', 'ppFaceoffsWon': 'pp_fo_wins', 'ppFaceoffsLost': 'pp_fo_losses',
             'shFaceoffs': 'sh_fo', 'shFaceoffsWon': 'sh_fo_wins', 'shFaceoffsLost': 'sh_fo_losses'
         }
@@ -195,7 +195,7 @@ def scrape_skaters(season):
         ],
         'col_names': {
             'playerId': 'nhl_num',
-            'evenStrengthGoalsAgainst': 'ev_goals_against', 'evenStrengthGoalsFor': 'ev_goals_for',
+            'evenStrengthGoalsAgainst': 'es_goals_against', 'evenStrengthGoalsFor': 'es_goals_for',
             'powerPlayGoalsAgainst': 'pp_goals_against', 'powerPlayGoalFor': 'pp_goals_for',
             'shortHandedGoalsAgainst': 'sh_goals_against', 'shortHandedGoalsFor': 'sh_goals_for'
         }
@@ -301,7 +301,7 @@ def scrape_skaters(season):
         ],
         'col_names': {
             'playerId': 'nhl_num',
-            'evTimeOnIce': 'ev_toi', 'ppTimeOnIce': 'pp_toi', 'shTimeOnIce': 'sh_toi',
+            'evTimeOnIce': 'es_toi', 'ppTimeOnIce': 'pp_toi', 'shTimeOnIce': 'sh_toi',
             'otTimeOnIce': 'ot_toi', 'timeOnIce': 'toi'
         }
     }
@@ -319,7 +319,7 @@ def scrape_skaters(season):
         additional_data = scrape_endpoint(season, **kwargs)
         skater_data = skater_data.join(additional_data, how='inner')
 
-    skater_data["ev_assists"] = skater_data["ev_points"] - skater_data["ev_goals"]
+    skater_data["es_assists"] = skater_data["es_points"] - skater_data["es_goals"]
     skater_data["pp_assists"] = skater_data["pp_points"] - skater_data["pp_goals"]
     skater_data["sh_assists"] = skater_data["sh_points"] - skater_data["sh_goals"]
     int_cols = [x for x in final_cols if 'team' not in x]
@@ -441,6 +441,6 @@ if __name__ == "__main__":
     for year in range(2019, 2008, -1):
         data.append(scrape_season(year))
     df = pd.concat(data, sort=False)
-    df.to_csv('../data/skater_data.csv', float_format='%.f')
+    df.to_csv('data/skater_data.csv', float_format='%.f')
     # skater_bios = scrape_bios(2009, 2019)
-    # skater_bios.to_csv('../data/skater_bios.csv', float_format='%.f')
+    # skater_bios.to_csv('data/skater_bios.csv', float_format='%.f')

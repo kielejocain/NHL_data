@@ -1,10 +1,10 @@
-DROP TABLE IF EXISTS skater_data;
 DROP TABLE IF EXISTS skaters;
+DROP TABLE IF EXISTS skaterstats;
 
 CREATE TABLE skaters (
     nhl_num INTEGER PRIMARY KEY,
-    full_name VARCHAR(100),
-    last_name VARCHAR(50),
+    last_name VARCHAR(100),
+    first_name VARCHAR(50),
     birth_date DATE,
     height INTEGER,
     weight INTEGER,
@@ -16,7 +16,7 @@ CREATE TABLE skaters (
     first_season INTEGER
 );
 
-CREATE TABLE skater_data (
+CREATE TABLE skaterstats (
     nhl_num INTEGER,
     season INTEGER,
     team VARCHAR(3),
@@ -24,7 +24,7 @@ CREATE TABLE skater_data (
     team3 VARCHAR(3),
     games_played INTEGER,
     goals INTEGER,
-    ev_goals INTEGER,
+    es_goals INTEGER,
     pp_goals INTEGER,
     sh_goals INTEGER,
     en_goals INTEGER,
@@ -38,18 +38,18 @@ CREATE TABLE skater_data (
     goals_wrap INTEGER,
     goals_wrist INTEGER,
     assists INTEGER,
-    ev_assists INTEGER,
+    es_assists INTEGER,
     pp_assists INTEGER,
     sh_assists INTEGER,
     en_assists INTEGER,
     points INTEGER,
-    ev_points INTEGER,
+    es_points INTEGER,
     pp_points INTEGER,
     sh_points INTEGER,
     en_points INTEGER,
     plus_minus INTEGER,
-    ev_goals_for INTEGER,
-    ev_goals_against INTEGER,
+    es_goals_for INTEGER,
+    es_goals_against INTEGER,
     pp_goals_for INTEGER,
     pp_goals_against INTEGER,
     sh_goals_for INTEGER,
@@ -83,9 +83,9 @@ CREATE TABLE skater_data (
     oz_fo INTEGER,
     oz_fo_wins INTEGER,
     oz_fo_losses INTEGER,
-    ev_fo INTEGER,
-    ev_fo_wins INTEGER,
-    ev_fo_losses INTEGER,
+    es_fo INTEGER,
+    es_fo_wins INTEGER,
+    es_fo_losses INTEGER,
     pp_fo INTEGER,
     pp_fo_wins INTEGER,
     pp_fo_losses INTEGER,
@@ -101,7 +101,7 @@ CREATE TABLE skater_data (
     penalties_drawn INTEGER,
     shifts INTEGER,
     toi INTEGER,
-    ev_toi INTEGER,
+    es_toi INTEGER,
     ot_toi INTEGER,
     pp_toi INTEGER,
     sh_toi INTEGER,

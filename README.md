@@ -29,7 +29,7 @@ We can then put that data into our database with the following set of commands:
 
     psql -U myusername -d mydatabase -f create_db.sql
     psql -U myusername -d mydatabase -c "\copy skaters FROM './data/skater_bios.csv' delimiter ',' csv header;"
-    psql -U myusername -d mydatabase -c "\copy skater_data FROM './data/skater_data.csv' delimiter ',' csv header;"
+    psql -U myusername -d mydatabase -c "\copy skaterstats FROM './data/skater_data.csv' delimiter ',' csv header;"
 
 We need to put the `\copy` commands outside the script as postgres will not allow them from inside a script easily.
 It may be possible, but this seemed easier than setting up authentication.
